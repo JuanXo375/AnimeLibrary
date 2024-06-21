@@ -19,7 +19,7 @@
 }
 
 :root[data-tema="oscuro"] {
-  --color-texto: #1a1a1a;
+  --color-texto: #2e3e88;
   --color-background: #fff;  
   --color-background-2: #1a1a1a;  
 }
@@ -56,13 +56,25 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   color: var(--color-background);
   background-color: var(--color-background-2);
   cursor: pointer;
   transition: border-color 0.25s;
+
+  &:hover {
+    border-color: var(--color-texto);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+}
+
+.effect_button{
+  cursor: pointer;
 
   &:hover {
     border-color: var(--color-texto);

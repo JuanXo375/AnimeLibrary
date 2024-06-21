@@ -16,7 +16,8 @@ const Menu = () => {
     }
   }
 
-  const [theme, setTheme] = useState<string>(getColorScheme())
+  const [theme, setTheme] = useState<string>(getColorScheme());
+  const [menu, setMenu] = useState<boolean>(false);
 
   const HandleCambioTema = () => {
     const actualTheme = getColorScheme();
@@ -25,20 +26,30 @@ const Menu = () => {
     setTheme(newTheme);
   }
 
+  const cerrarToggle = () => {
+    setMenu(false)
+  }
+
   useEffect(()=> {
     document.documentElement.setAttribute("data-tema", theme);
-    console.log("🚀 ~ Menu ~ theme:", theme)
-    
   },[theme])
 
   return (
-    <nav className="navbar">
-      <IconMenu color="var(--color-texto)" className="icon"></IconMenu>
-      <p>BakAnime</p>
-      <button onClick={HandleCambioTema}>{theme.toUpperCase()}</button>
-      <Link to='/'>Busqueda</Link>
-      <Link to='/h'>Perfil</Link>
-    </nav>
+    <>
+      <nav className="navbar">
+        <IconMenu color="var(--color-texto)" 
+        className={`icon_menu effect_button ${menu?'icon_menu-change':''}`}
+        onClick={() => setMenu((prev)=>!prev)}/>
+        <p>BakAnime</p>
+        <button onClick={HandleCambioTema} className="button-centrar">{theme.toUpperCase()}</button>
+        <Link onClick={cerrarToggle} to='/'>Busqueda</Link>
+        <Link onClick={cerrarToggle} to='/h'>Perfil</Link>
+      </nav>
+      <div className={`toggle_menu ${menu?'toggle_menu-deslizar':''}`}>
+        <Link onClick={cerrarToggle} to='/'>Busqueda</Link>
+        <Link onClick={cerrarToggle} to='/h'>Perfil</Link>
+      </div>
+    </>
   )
 }
 
