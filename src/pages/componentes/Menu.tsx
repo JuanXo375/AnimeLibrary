@@ -28,6 +28,7 @@ const Menu = () => {
   useEffect(()=> {
     document.documentElement.setAttribute("data-tema", theme);
     console.log("🚀 ~ Menu ~ theme:", theme)
+    
   },[theme])
 
   return (
